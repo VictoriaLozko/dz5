@@ -31,9 +31,9 @@ public abstract class BaseTest {
             case "firefox":
                 System.setProperty(
                         "webdriver.gecko.driver",
-                        new File(BaseTest.class.getResource("/geckodriver.exe").getFile()).getPath());
+                        new File(BaseTest.class.getResource("/geckodriver").getFile()).getPath());
                 return new FirefoxDriver();
-            case "ie":
+            /*case "ie":
             case "internet explorer":
                 System.setProperty(
                         "webdriver.ie.driver",
@@ -47,11 +47,12 @@ public abstract class BaseTest {
                         "phantomjs.binary.path",
                         new File(BaseTest.class.getResource("/phantomjs.exe").getFile()).getPath());
                 return new PhantomJSDriver();
+                */
             case "chrome":
             default:
                 System.setProperty(
                         "webdriver.chrome.driver",
-                        new File(BaseTest.class.getResource("/chromedriver.exe").getFile()).getPath());
+                        new File(BaseTest.class.getResource("/chromedriver").getFile()).getPath());
                 return new ChromeDriver();
         }
     }
@@ -85,7 +86,7 @@ public abstract class BaseTest {
 
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-//        driver.manage().window().maximize();
+        driver.manage().window().maximize();
 
         wait = new WebDriverWait(driver, 5);
     }
