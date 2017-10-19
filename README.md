@@ -1,3 +1,9 @@
+*для работы под Ubuntu запустить терминал и  перейти в директорию selenium_grid
+*запустить хаб командой sh start-hub.sh
+*запустить еще один терминал и  перейти в директорию selenium_grid
+*запустить ноду командой sh start-node.sh
+
+
 # README #
 
 This README would normally document whatever steps are necessary to get your application up and running.

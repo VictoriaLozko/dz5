@@ -4,9 +4,9 @@
     <parameter name="mainPageUrl" value="http://prestashop-automation.qatestlab.com.ua/" />
 
     <test name="Test case on Chrome">
-         <parameter name="selenium.browser" value="chrome" />
+         <parameter name="selenium.browser" value="chrome-mobile" />
          <classes>
-             <class name="myprojects.automation.webinar5.tests.MyTestDesktop" />
+             <class name="myprojects.automation.webinar5.tests.MyTestMobile" />
          </classes>
      </test>
 
@@ -17,13 +17,12 @@
          </classes>
      </test>
 
-
-     <!--<test name="Test case on Chrome (Remote execution)">
-         <parameter name="selenium.browser" value="chrome-mobile" />
+     <test name="Test case on Chrome (Remote execution)">
+         <parameter name="selenium.browser" value="chrome" />
          <parameter name="selenium.hub"     value="http://localhost:4441/wd/hub" />
          <classes>
-             <class name="myprojects.automation.webinar5.tests.MyTestDesktopDesktop" />
+             <class name="myprojects.automation.webinar5.tests.MyTestMobile" />
          </classes>
      </test>
-    -->
+
 </suite>

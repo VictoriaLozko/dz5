@@ -1,8 +1,7 @@
 package myprojects.automation.webinar5.pages.desktop;
 
-import myprojects.automation.webinar5.utils.CustomReporter;
+import myprojects.automation.webinar5.utils.TryToWait;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MainPage {
@@ -19,26 +18,19 @@ public class MainPage {
     }
 
     public static boolean isMainPageOpened(WebDriverWait wait){
-        boolean isOpened = true;
 
-        try{
-            wait.until(ExpectedConditions.presenceOfElementLocated(productsListOnMainPageLocator));
-        }catch(TimeoutException te){
-            isOpened = false;
-            CustomReporter.log("TimeoutException in isMainPageOpened");
-            System.out.println("TimeoutException in isMainPageOpened");
-        }
+        boolean isOpened = TryToWait.tryToWaitForPresenceOfElementLocated(wait, productsListOnMainPageLocator,
+                "Main page was not opened", "TimeoutException in isMainPageOpened");
 
         return isOpened;
     }
 
     public static void goToAllProducts(WebDriver driver, WebDriverWait wait){
 
-        try {
-            wait.until(ExpectedConditions.elementToBeClickable(allProductsButtonLocator));
-        }catch (TimeoutException te){
-            CustomReporter.log("Cant found all products button");
-            System.out.println("TimeoutException in goToAllProducts");
+        boolean isClickable = TryToWait.tryToWaitForElementToBeClickable(wait, allProductsButtonLocator,
+                "All products button is not clickable", "TimeoutException in goToAllProducts");
+
+        if (!isClickable){
             return;
         }
 
@@ -47,15 +39,9 @@ public class MainPage {
     }
 
     public static boolean isAllProductsPageOpened(WebDriverWait wait){
-        boolean isOpened = true;
 
-        try{
-            wait.until(ExpectedConditions.presenceOfElementLocated(productsListOnAllProductsPageLocator));
-        }catch(TimeoutException te){
-            isOpened = false;
-            CustomReporter.log("TimeoutException in isAllProductsPageOpened");
-            System.out.println("TimeoutException in isAllProductsPageOpened");
-        }
+        boolean isOpened = TryToWait.tryToWaitForPresenceOfElementLocated(wait, productsListOnAllProductsPageLocator,
+                "Cant found product list on all products page", "TimeoutException in isAllProductsPageOpened");
 
         return isOpened;
     }
