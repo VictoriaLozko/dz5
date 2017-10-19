@@ -3,6 +3,7 @@ package myprojects.automation.webinar5;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
@@ -19,6 +20,8 @@ import org.testng.annotations.Parameters;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public abstract class BaseTest {
@@ -48,6 +51,21 @@ public abstract class BaseTest {
                         new File(BaseTest.class.getResource("/phantomjs.exe").getFile()).getPath());
                 return new PhantomJSDriver();
                 */
+            case "chrome-mobile":
+                DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+
+                Map<String, String> mobileEmulation = new HashMap<String, String>();
+                mobileEmulation.put("deviceName", "Nexus 5X");
+
+                Map<String, Object> chromeOptions = new HashMap<String, Object>();
+                chromeOptions.put("mobileEmulation", mobileEmulation);
+
+                capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
+                //capabilities.setCapability(ChromeOptions.CAPABILITY,"chrome-mobile");
+                System.setProperty(
+                        "webdriver.chrome.driver",
+                        new File(BaseTest.class.getResource("/chromedriver").getFile()).getPath());
+                return new ChromeDriver(capabilities);
             case "chrome":
             default:
                 System.setProperty(
@@ -70,6 +88,18 @@ public abstract class BaseTest {
             case "phantomjs":
                 capabilities = DesiredCapabilities.phantomjs();
                 break;
+            case "chrome-mobile":
+                capabilities = DesiredCapabilities.chrome();
+
+                Map<String, String> mobileEmulation = new HashMap<String, String>();
+                mobileEmulation.put("deviceName", "Nexus 5X");
+
+                Map<String, Object> chromeOptions = new HashMap<String, Object>();
+                chromeOptions.put("mobileEmulation", mobileEmulation);
+
+                capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
+                capabilities.setCapability("name","chrome-mobile");
+                break;
             case "chrome":
             default:
                 capabilities = DesiredCapabilities.chrome();
@@ -88,7 +118,7 @@ public abstract class BaseTest {
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
-        wait = new WebDriverWait(driver, 5);
+        wait = new WebDriverWait(driver, 10);
     }
 
     @AfterClass

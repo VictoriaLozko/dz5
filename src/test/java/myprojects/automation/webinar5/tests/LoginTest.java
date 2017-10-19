@@ -1,6 +1,5 @@
 package myprojects.automation.webinar5.tests;
 
-
 import myprojects.automation.webinar5.BaseTest;
 import myprojects.automation.webinar5.utils.CustomReporter;
 import myprojects.automation.webinar5.utils.Properties;
@@ -27,6 +26,6 @@ public class LoginTest extends BaseTest {
         driver.findElement(By.name("submitLogin")).click();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("main")));
 
-        Thread.sleep(10000);
+        Thread.sleep(1000);
     }
 }
