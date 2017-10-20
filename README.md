@@ -3,7 +3,8 @@
 *запустить еще один терминал и  перейти в директорию selenium_grid
 *запустить ноду командой sh start-node.sh
 
-
+Ветка new_branch содержит доработки домашнего задания. 
+В ветке master в файле testng.xml опечатка в "Test case on Chrome (Remote execution)" в <class name="myprojects.automation.webinar5.tests.MyTestDesktop" /> должно быть MyTestDesktop вместо MyTestMobile
 # README #
 
 This README would normally document whatever steps are necessary to get your application up and running.
