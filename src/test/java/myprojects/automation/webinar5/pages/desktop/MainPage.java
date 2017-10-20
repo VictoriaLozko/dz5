@@ -8,7 +8,6 @@ public class MainPage {
 
     private static By allProductsButtonLocator = By.xpath("//section[@class = 'featured-products clearfix']/a");
     private static By productsListOnMainPageLocator = By.xpath("//div[@class = 'products']");
-    private static By productsListOnAllProductsPageLocator = By.xpath("//div[@class='products row']");
 
     private MainPage(){
     }
@@ -38,11 +37,4 @@ public class MainPage {
         allProductsButton.click();
     }
 
-    public static boolean isAllProductsPageOpened(WebDriverWait wait){
-
-        boolean isOpened = TryToWait.tryToWaitForPresenceOfElementLocated(wait, productsListOnAllProductsPageLocator,
-                "Cant found product list on all products page", "TimeoutException in isAllProductsPageOpened");
-
-        return isOpened;
-    }
 }
